@@ -3,6 +3,8 @@
 #include <time.h>
 
 #define SIZE_OF_TABLE 100
+#define NUMBER_OF_ELEMENTS_IN_ROW 10
+
 #define BEFORE_BEING_SORTED "before being sorted"
 #define AFTER_BEING_SORTED "after being sorted"
 
@@ -14,7 +16,7 @@
 
 void generateTable(void);       // Fills the array with random integers
 void printTable(char *);        // Prints the array with formatting
-void simpleSelectionSort(void); // Sorts the array using a simple bubble sort
+void simpleSelectionSort(void); // Sorts the array using a simple selection sort
 
 int tableToBeSorted[SIZE_OF_TABLE]; // Global array to hold numbers to be sorted
 
@@ -42,7 +44,7 @@ void printTable(char *actualState) {
 
   // Print each number in the array, 10 numbers per line
   for (int iterator = 0; iterator < SIZE_OF_TABLE; iterator++) {
-    if (iterator % 10 == 0) {
+    if (iterator % NUMBER_OF_ELEMENTS_IN_ROW == 0) {
       putchar('\n');
     }
     printf("%3d,", tableToBeSorted[iterator]);
@@ -59,11 +61,11 @@ void simpleSelectionSort(void) {
     minVal = tableToBeSorted[mainIterator];
     minValIndex = mainIterator;
 
-    for (int iterator = mainIterator + 1; iterator < SIZE_OF_TABLE;
-         iterator++) {
-      if (tableToBeSorted[iterator] < minVal) {
-        minVal = tableToBeSorted[iterator];
-        minValIndex = iterator;
+    for (int nestedIterator = mainIterator + 1; nestedIterator < SIZE_OF_TABLE;
+         nestedIterator++) {
+      if (tableToBeSorted[nestedIterator] < minVal) {
+        minVal = tableToBeSorted[nestedIterator];
+        minValIndex = nestedIterator;
       }
     }
 
