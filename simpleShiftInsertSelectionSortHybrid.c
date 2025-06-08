@@ -3,6 +3,8 @@
 #include <time.h>
 
 #define SIZE_OF_TABLE 100
+#define NUMBER_OF_ELEMENTS_IN_ROW 10
+
 #define BEFORE_BEING_SORTED "before being sorted"
 #define AFTER_BEING_SORTED "after being sorted"
 
@@ -43,7 +45,7 @@ void printTable(char *actualState) {
 
   // Print each number in the array, 10 numbers per line
   for (int iterator = 0; iterator < SIZE_OF_TABLE; iterator++) {
-    if (iterator % 10 == 0) {
+    if (iterator % NUMBER_OF_ELEMENTS_IN_ROW == 0) {
       putchar('\n');
     }
     printf("%3d,", tableToBeSorted[iterator]);
@@ -57,10 +59,11 @@ void hybrid(void) {
   int minValIndex = 0;
 
   for (int mainIterator = 1; mainIterator < SIZE_OF_TABLE; mainIterator++) {
-    for (int iterator = mainIterator; iterator < SIZE_OF_TABLE; iterator++) {
-      if (tableToBeSorted[iterator] < minVal) {
-        minVal = tableToBeSorted[iterator];
-        minValIndex = iterator;
+    for (int nestedIterator = mainIterator; nestedIterator < SIZE_OF_TABLE;
+         nestedIterator++) {
+      if (tableToBeSorted[nestedIterator] < minVal) {
+        minVal = tableToBeSorted[nestedIterator];
+        minValIndex = nestedIterator;
       }
     }
     for (int lastVal = minValIndex; lastVal >= mainIterator; lastVal--) {
