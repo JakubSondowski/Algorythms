@@ -3,6 +3,8 @@
 #include <time.h>
 
 #define SIZE_OF_TABLE 100
+#define NUMBER_OF_ELEMENTS_IN_ROW 10
+
 #define BEFORE_BEING_SORTED "before being sorted"
 #define AFTER_BEING_SORTED "after being sorted"
 
@@ -42,7 +44,7 @@ void printTable(char *actualState) {
 
   // Print each number in the array, 10 numbers per line
   for (int iterator = 0; iterator < SIZE_OF_TABLE; iterator++) {
-    if (iterator % 10 == 0) {
+    if (iterator % NUMBER_OF_ELEMENTS_IN_ROW == 0) {
       putchar('\n');
     }
     printf("%3d,", tableToBeSorted[iterator]);
@@ -55,13 +57,15 @@ void simpleBubbleSort(void) {
   int buffer;
 
   // Simple bubble sort implementation
-  for (int i = 0; i < SIZE_OF_TABLE - 1; i++) {
-    for (int j = 0; j < SIZE_OF_TABLE - 1; j++) {
-      if (tableToBeSorted[j] > tableToBeSorted[j + 1]) {
+  for (int mainIterator = 0; mainIterator < SIZE_OF_TABLE - 1; mainIterator++) {
+    for (int nestedIterator = 0; nestedIterator < SIZE_OF_TABLE - 1;
+         nestedIterator++) {
+      if (tableToBeSorted[nestedIterator] >
+          tableToBeSorted[nestedIterator + 1]) {
         // Swap the two values
-        buffer = tableToBeSorted[j];
-        tableToBeSorted[j] = tableToBeSorted[j + 1];
-        tableToBeSorted[j + 1] = buffer;
+        buffer = tableToBeSorted[nestedIterator];
+        tableToBeSorted[nestedIterator] = tableToBeSorted[nestedIterator + 1];
+        tableToBeSorted[nestedIterator + 1] = buffer;
       }
     }
   }
