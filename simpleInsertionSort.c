@@ -54,19 +54,17 @@ void printTable(char *actualState) {
 }
 
 void simpleInsertionSort(void) {
-  // Insertion sort implementation
-  for (int mainIterator = 0; mainIterator < SIZE_OF_TABLE; mainIterator++) {
-    int key = tableToBeSorted[mainIterator]; // Current element to insert
+  for (int mainIterator = 1; mainIterator < SIZE_OF_TABLE; mainIterator++) {
+    int key = tableToBeSorted[mainIterator];
     int nestedIterator;
 
-    // Shift elements that are greater than key to the right
     for (nestedIterator = mainIterator - 1;
          nestedIterator >= 0 && tableToBeSorted[nestedIterator] > key;
          nestedIterator--) {
       tableToBeSorted[nestedIterator + 1] = tableToBeSorted[nestedIterator];
     }
 
-    // Insert the key at the correct position
     tableToBeSorted[nestedIterator + 1] = key;
   }
 }
+
